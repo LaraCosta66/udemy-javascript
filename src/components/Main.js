@@ -13,6 +13,9 @@ export function Main() {
 
     setTasks((prevTasks) => [...prevTasks, task]);
     setNewTask("");
+  }  
+  function handleDelete(task) {
+    setTasks((prevTasks) => prevTasks.filter((pTask) => pTask !== task));
   }
   return (
     <div className="main">
@@ -34,7 +37,10 @@ export function Main() {
             {task}
             <span>
               <FaEdit className="edit" />
-              <FaWindowClose className="delete" />
+              <FaWindowClose
+                className="delete"
+                onClick={() => handleDelete(task)}
+              />
             </span>
           </li>
         ))}
