@@ -3,11 +3,21 @@ import "./Main.css";
 import { FaPlus, FaEdit, FaWindowClose } from "react-icons/fa";
 
 export function Main() {
-  const [newTask, setNewTask] = useState(["drink coffe", "launch", 'somethong']);
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const task = newTask.trim();
+    if (tasks.includes(task)) return;
+
+    setTasks((prevTasks) => [...prevTasks, task]);
+    setNewTask("");
+  }
   return (
     <div className="main">
       <h1>Lista de Tarefas</h1>
-      <form action="#" className="form">
+      <form onSubmit={handleSubmit} action="#" className="form">
         <input
           type="text"
           placeholder="Texto"
@@ -19,13 +29,13 @@ export function Main() {
         </button>
       </form>
       <ul className="tasks">
-        {newTask.map((task) => (
+        {tasks.map((task) => (
           <li key={task}>
             {task}
-            <div>
+            <span>
               <FaEdit className="edit" />
               <FaWindowClose className="delete" />
-            </div>
+            </span>
           </li>
         ))}
       </ul>
