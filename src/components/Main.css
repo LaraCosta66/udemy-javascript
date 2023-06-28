@@ -1,29 +1,33 @@
-.main{
-    background:#fff;
+.main {
+    background: #fff;
     padding: 30px;
     margin: 50px auto;
     max-width: 500px;
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.main h1{
+
+.main h1 {
     font-size: 20px;
     text-align: center;
 }
-.form{
+
+.form {
     margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.form input[type="text"]{
+
+.form input[type="text"] {
     height: 40px;
     padding: 0 20px;
     font-size: 20px;
     border: 1px solid #ccc;
     min-width: 80%;
 }
-.form button[type="submit"]{
+
+.form button[type="submit"] {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,4 +36,40 @@
     width: 42px;
     background: #f04c64;
     color: #fff;
+}
+
+.tasks {
+    margin-top: 30px;
+}
+
+.tasks li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    transition: all 600ms;
+
+}
+
+.tasks li:hover {
+    background: #38afca;
+}
+
+.tasks li .edit {
+    cursor: pointer;
+    margin-right: 15px;
+    color: #38afca;
+    transition: all 600ms;
+}
+
+.tasks li .delete {
+    cursor: pointer;
+    margin-right: 15px;
+    color: #f04c64;
+    transition: all 600ms;
+}
+
+.tasks li:hover .edit,
+.tasks li:hover .delete {
+    color: #000;
 }

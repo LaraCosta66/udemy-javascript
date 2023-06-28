@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import './Main.css'
-import {FaPlus} from 'react-icons/fa'
+import "./Main.css";
+import { FaPlus, FaEdit, FaWindowClose } from "react-icons/fa";
+
 export function Main() {
-  const [newTask, setNewTask] = useState();
+  const [newTask, setNewTask] = useState(["drink coffe", "launch", 'somethong']);
   return (
     <div className="main">
       <h1>Lista de Tarefas</h1>
@@ -13,8 +14,21 @@ export function Main() {
           value={newTask}
           onChange={(event) => setNewTask(event.target.value)}
         />
-        <button type="submit"><FaPlus/></button>
+        <button type="submit">
+          <FaPlus />
+        </button>
       </form>
+      <ul className="tasks">
+        {newTask.map((task) => (
+          <li key={task}>
+            {task}
+            <div>
+              <FaEdit className="edit" />
+              <FaWindowClose className="delete" />
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
