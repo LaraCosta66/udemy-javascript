@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./Main.css";
-import { FaPlus, FaEdit, FaWindowClose } from "react-icons/fa";
+import { FaPlus, FaEdit, FaWindowClose, FaCheck } from "react-icons/fa";
 
 export function Main() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [editIndex, setEditIndex] = useState(-1);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -13,7 +14,21 @@ export function Main() {
 
     setTasks((prevTasks) => [...prevTasks, task]);
     setNewTask("");
-  }  
+  }
+  function handleEdit(task) {
+    const index = tasks.indexOf(task);
+    setEditIndex(index);
+    setNewTask(task);
+
+    if (editIndex !== -1) {
+      const updatedTasks = [...tasks];
+      updatedTasks[editIndex] = newTask.trim();
+      setTasks(updatedTasks);
+      setEditIndex(-1);
+      setNewTask("");
+    }
+  }
+
   function handleDelete(task) {
     setTasks((prevTasks) => prevTasks.filter((pTask) => pTask !== task));
   }
@@ -32,11 +47,25 @@ export function Main() {
         </button>
       </form>
       <ul className="tasks">
-        {tasks.map((task) => (
+        {tasks.map((task, index) => (
           <li key={task}>
-            {task}
+            {index === editIndex ? (
+              <input
+                type="text"
+                value={newTask}
+                onChange={(event) => setNewTask(event.target.value)}
+              />
+            ) : (
+              <span>{task}</span>
+            )}
             <span>
-              <FaEdit className="edit" />
+              {index === editIndex ? (
+                <>
+                  <FaCheck className="save" onClick={handleEdit} />
+                </>
+              ) : (
+                <FaEdit className="edit" onClick={() => handleEdit(task)} />
+              )}
               <FaWindowClose
                 className="delete"
                 onClick={() => handleDelete(task)}

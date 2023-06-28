@@ -52,7 +52,7 @@
 }
 
 .tasks li:hover {
-    background: #38afca;
+    background: #c2c2c2;
 }
 
 .tasks li .edit {
@@ -68,7 +68,12 @@
     color: #f04c64;
     transition: all 600ms;
 }
-
+.tasks li .save {
+    cursor: pointer;
+    margin-right: 15px;
+    color: #01ac0f;
+    transition: all 600ms;
+}
 .tasks li:hover .edit,
 .tasks li:hover .delete {
     color: #000;
